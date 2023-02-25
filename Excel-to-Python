@@ -15,26 +15,33 @@ x = list(range(1, 4001))
 y = data["1차시도"]
 
 # Create line graph
-fig, ax = plt.subplots(figsize=(12, 8))
+fig, ax = plt.subplots(figsize=(15, 15))
 ax.plot(x, y)
 
+# Plot the data as line graphs with different colors and line styles
+ax.plot(x, y, color='green', linewidth=1, label='LIA signal')
+#ax.plot(x, y2, color='blue', linewidth=2, linestyle='--', label='Polynomial Curve')
+#ax.plot(x, y3, color='green', linewidth=1, linestyle=':', label='Random Noise')
+
+#label 글씨크기 키우기
+ax.legend(loc='upper left', fontsize=20)
+
 # Customize the plot
-ax.set_title("Square Wave 0-1V 100kHz")
-ax.set_xlabel("Memory Length")
-ax.set_ylabel("1st Attempt")
-ax.grid(which='major', linestyle='--', alpha=0.5)
-ax.tick_params(axis='both', which='major', labelsize=10)
+ax.set_title("Square Wave 0-1V 100kHz", fontsize=30) #fontsize는 글자크기
+ax.set_xlabel("Memory Length", fontsize=30)
+ax.set_ylabel("1st Attempt", fontsize=30)
+ax.tick_params(axis='both', which='major', labelsize=20)
 ax.tick_params(axis='both', which='minor', labelsize=8)
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 ax.spines['bottom'].set_linewidth(1.5)
 ax.spines['left'].set_linewidth(1.5)
 
-# Add a grid to the graph with dotted lines
+# Add a grid to the graph with dotted lines, 그래프에 격자그리기
 ax.grid(color='gray', linestyle=':', alpha=0.5)
 
-# Add text annotations to the graph
-ax.text(-9, 10, 'w', fontsize=14, color='purple')
+# Add text annotations to the graph, 그래프에 글자넣고 싶을때
+#ax.text(-9, 10, 'write_letter', fontsize=14, color='purple')
 
 # Save the figure
 fig.savefig('new_file.png')
