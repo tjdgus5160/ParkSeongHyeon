@@ -1,9 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-x = None
-y = None
-
 # Prompt user to enter file path
 # 파일 경로는 내 폴더 들어가서 경로를 입력해서 Excel파일의 이름까지 붙이고 .xlsx까지 붙이면 돼
 file_path = input("Enter the file path of the Excel file: ")
@@ -14,12 +11,27 @@ data = pd.read_excel(file_path)
 # Extract relevant columns
 # x축은 y축에 맞춰서 데이터 갯수만큼 list를 지정해서 사용하면 되고
 # y축은 맨 위를 기준으로 쓰여져 있는게 그거니까 써서 해
-x = list(range(1,4001))
-y = data["2차시도"]
+x = list(range(1, 4001))
+y = data["1차시도"]
 
 # Create line graph
-plt.plot(x, y)
-plt.title("Square Wave 0-1V 100kHz")
-plt.xlabel("Memory Length")
-plt.ylabel("1st Attempt")
-plt.show()
+fig, ax = plt.subplots()
+ax.plot(x, y)
+
+# Customize the plot
+ax.set_title("Square Wave 0-1V 100kHz")
+ax.set_xlabel("Memory Length")
+ax.set_ylabel("1st Attempt")
+ax.grid(which='major', linestyle='--', alpha=0.5)
+ax.tick_params(axis='both', which='major', labelsize=10)
+ax.tick_params(axis='both', which='minor', labelsize=8)
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.spines['bottom'].set_linewidth(1.5)
+ax.spines['left'].set_linewidth(1.5)
+
+# Save the figure
+fig.savefig('new_file.png')
+# 이미지는 'C:\Users\PSH'에 있음
+# 'new_file.png'라고 써있는거는 그 때 그래프 이름을 적으면 됨.
+# 근데 한글쓰면 안돼
