@@ -15,7 +15,7 @@ x = list(range(1, 4001))
 y = data["1차시도"]
 
 # Create line graph
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(12, 8))
 ax.plot(x, y)
 
 # Customize the plot
@@ -29,6 +29,12 @@ ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 ax.spines['bottom'].set_linewidth(1.5)
 ax.spines['left'].set_linewidth(1.5)
+
+# Add a grid to the graph with dotted lines
+ax.grid(color='gray', linestyle=':', alpha=0.5)
+
+# Add text annotations to the graph
+ax.text(-9, 10, 'w', fontsize=14, color='purple')
 
 # Save the figure
 fig.savefig('new_file.png')
