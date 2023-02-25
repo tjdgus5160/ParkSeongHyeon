@@ -44,7 +44,7 @@ ax.grid(color='gray', linestyle=':', alpha=0.5)
 #ax.text(-9, 10, 'write_letter', fontsize=14, color='purple')
 
 # Save the figure
-fig.savefig('new_file.png')
+fig.savefig('new_file.png', dpi=1000)
 # 이미지는 'C:\Users\PSH'에 있음
 # 'new_file.png'라고 써있는거는 그 때 그래프 이름을 적으면 됨.
 # 근데 한글쓰면 안돼
