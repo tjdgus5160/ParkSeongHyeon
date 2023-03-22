@@ -1,0 +1,22 @@
+import imageio.v2 as imageio
+import os
+
+# Prompt user to enter file path
+# 파일 경로는 내 폴더 들어가서 경로를 입력해서 Excel파일의 이름까지 붙이고 .xlsx까지 붙이면 돼
+image_folder = input("Enter the file path of the image_folder: ")
+
+# 이미지 파일들의 이름을 리스트로 저장
+images = os.listdir(image_folder)
+images = [i for i in images if not i.endswith(".ini")]
+
+# 이미지 파일들을 읽어서 리스트로 저장
+images_list = []
+for i in range(len(images)):
+    image_path = os.path.join(image_folder, images[i])
+    images_list.append(imageio.imread(image_path))
+
+# GIF 파일로 저장
+# 경로를 적을 때 '\'를 적지말자
+gif_path = 'C:/Users/PSH/Desktop/Research Process/new.gif'
+imageio.mimsave(gif_path, images_list, fps=1000)
+# fps는 속도라는데 크게 키워도 속도는 동일함
