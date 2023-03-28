@@ -9,33 +9,35 @@ file_path = input("Enter the file path of the Excel file: ")
 data = pd.read_excel(file_path)
 
 # Extract relevant columns
-# x축은 y축에 맞춰서 데이터 갯수만큼 list를 지정해서 사용하면 되고
-# y축은 맨 위를 기준으로 쓰여져 있는게 그거니까 써서 해
+# 어디 행부터 어디 열까지 지정해서 할 수 있어
 x = list(range(1, 4001))
-y = data["1차시도"]
+#x = data.iloc[0:51, 24]
+y = data.iloc[15:4015, 0]
 
 # Create line graph
-fig, ax = plt.subplots(figsize=(15, 15))
+fig, ax = plt.subplots(figsize=(20,12))
 ax.plot(x, y)
 
 # Plot the data as line graphs with different colors and line styles
-ax.plot(x, y, color='green', linewidth=1, label='LIA signal')
+ax.plot(x, y, color='blue', linewidth=1)
 #ax.plot(x, y2, color='blue', linewidth=2, linestyle='--', label='Polynomial Curve')
 #ax.plot(x, y3, color='green', linewidth=1, linestyle=':', label='Random Noise')
 
 #label 글씨크기 키우기
-ax.legend(loc='upper left', fontsize=20)
+#ax.legend(loc='upper left', fontsize=20)
 
 # Customize the plot
-ax.set_title("Square Wave 0-1V 100kHz", fontsize=30) #fontsize는 글자크기
-ax.set_xlabel("Memory Length", fontsize=30)
-ax.set_ylabel("1st Attempt", fontsize=30)
+# ax.set_title("Square Wave 0-1V 100kHz", fontsize=30) #fontsize는 글자크기
+ax.set_xlabel("Voltage", fontsize=30)
+ax.set_ylabel("EIT Signal", fontsize=30)
 ax.tick_params(axis='both', which='major', labelsize=20)
 ax.tick_params(axis='both', which='minor', labelsize=8)
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 ax.spines['bottom'].set_linewidth(1.5)
 ax.spines['left'].set_linewidth(1.5)
+
+ax.set_ylim([-20, 120]) # y축 스케일을 -20부터 120까지로 고정합니다.
 
 # Add a grid to the graph with dotted lines, 그래프에 격자그리기
 ax.grid(color='gray', linestyle=':', alpha=0.5)
@@ -44,7 +46,8 @@ ax.grid(color='gray', linestyle=':', alpha=0.5)
 #ax.text(-9, 10, 'write_letter', fontsize=14, color='purple')
 
 # Save the figure
-fig.savefig('new_file.png', dpi=1000)
-# 이미지는 'C:\Users\PSH'에 있음
+fig.savefig('probe lock-in off, coupling 7Hz, 0.6V, FG 1.1Vpp EIT peak shift.png', dpi=500)
+# 이미지는 'C:\Users\'에 있음
 # 'new_file.png'라고 써있는거는 그 때 그래프 이름을 적으면 됨.
 # 근데 한글쓰면 안돼
+# 
