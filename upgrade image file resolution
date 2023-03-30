@@ -1,0 +1,12 @@
+pip install opencv-python
+
+import cv2
+
+# 이미지 불러오기
+img = cv2.imread('2023-03-28-204347.jpg')
+
+# 이미지 크기를 두 배로 늘리기
+upscaled = cv2.resize(img, None, fx=30, fy=30, interpolation=cv2.INTER_LINEAR)
+
+# 이미지 저장하기
+cv2.imwrite('upscaled.jpg', upscaled)
