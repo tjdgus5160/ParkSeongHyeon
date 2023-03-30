@@ -1,0 +1,45 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+from mpl_toolkits.mplot3d import Axes3D
+
+# Use the same file path and data extraction code
+file_path = input("Enter the file path of the Excel file: ")
+data = pd.read_excel(file_path)
+x = np.linspace(0, 5, 4000)
+y1 = data.iloc[1:4001, 0]
+y2 = data.iloc[1:4001, 1]
+y3 = data.iloc[1:4001, 2]
+y4 = data.iloc[1:4001, 3]
+y5 = data.iloc[1:4001, 4]
+y6 = data.iloc[1:4001, 5]
+y7 = data.iloc[1:4001, 6]
+y10 = data.iloc[1:4001, 9]
+y11 = data.iloc[1:4001, 10]
+y12 = data.iloc[1:4001, 11]
+
+# Prepare the 3D plot
+fig = plt.figure(figsize=(20, 20))
+ax = fig.add_subplot(111, projection='3d')
+
+# Plot the data as 3D line graphs with different colors and line styles
+# Increase the x_offset for each y data to separate them in the 3D space
+x_offset = 0
+for y in [y1, y2, y3, y4, y5, y6, y7, y10, y11, y12]:
+    ax.plot(x_offset * np.ones(len(y)), x, zs=y, zdir='z', linewidth=1.5)
+    x_offset += 0.1
+
+# Customize the plot
+ax.view_init(70, 0) # 3D 이미지의 각도
+ax.set_xlabel("Voltage", fontsize=30)
+ax.xaxis.labelpad = 20  # x축 레이블 패딩 값을 설정 (단위: 포인트)
+ax.set_ylabel("Time (ms)", fontsize=30)
+ax.yaxis.labelpad = 20  # y축 레이블 패딩 값을 설정 (단위: 포인트)
+ax.set_zlabel("EIT Signal", fontsize=30)
+ax.zaxis.labelpad = 20  # z축 레이블 패딩 값을 설정 (단위: 포인트)
+ax.tick_params(axis='both', which='major', labelsize=15)
+ax.tick_params(axis='both', which='minor', labelsize=8)
+
+# Save the figure
+fig.savefig('3D_EIT_signal_swapped_axes.jpg', dpi=1000)
+# C:\Users\PSH\Desktop\Research Process\데이터 정리\probe lock-in off, coupling 7Hz, 0.6V, FG Vpp EIT peak shift.xlsx
